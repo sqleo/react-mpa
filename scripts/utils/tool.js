@@ -1,8 +1,19 @@
 const fs = require("fs")
 const htmlWebpackPlugin = require("html-webpack-plugin")
 const path = require("path")
-const {MAIN_FILE} = require("./constant")
+const {MAIN_FILE,MAIN_META }= require("./constant")
 
+const getEntryMeta = () => {
+  const dirPackages = path.resolve(__dirname, "../../src/packages")
+  const entryMeta = Object.create(null)
+  fs.readdirSync(dirPackages).filter(file => {
+    const entryPath = path.join(dirPackages,file)
+    if (fs.statSync(entryPath)  && fs.existsSync(path.join(entryPath,MAIN_META))) {
+      entryMeta[file] = require(path.join(entryPath,MAIN_META))
+    }
+  })
+  return entryMeta
+}
 
 const getEntryPath = () => {
   const dirPackages = path.resolve(__dirname, "../../src/packages")
@@ -13,11 +24,11 @@ const getEntryPath = () => {
       entry[file] = path.join(entryPath,MAIN_FILE)
     }
   })
-  console.log(entry)
   return entry
 }
 const getEntryTemplate = () => {
   const dirPackages = path.resolve(__dirname, "../../src/packages")
+  const entryMeta = getEntryMeta()
   const Template = []
   fs.readdirSync(dirPackages).filter(file => {
     const entryPath = path.join(dirPackages,file)
@@ -27,6 +38,8 @@ const getEntryTemplate = () => {
         new htmlWebpackPlugin({
           template: path.resolve(__dirname, '../../public/index.html'),
           filename: `${file}.html`,
+          title: file in entryMeta ? entryMeta[file].title : "" ,
+          meta:file in entryMeta ? entryMeta[file].meta : "",
           chunks: ['manifest', 'vendors', file],
         })
       )
