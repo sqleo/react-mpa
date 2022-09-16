@@ -15,31 +15,6 @@ module.exports = {
       "@src/packages": path.resolve(__dirname, "../src/packages"),
 
     },
-    fallback: {
-      path: require.resolve('path-browserify'),
-      assert: require.resolve('assert'),
-      buffer: require.resolve('buffer'),
-      console: require.resolve('console-browserify'),
-      constants: require.resolve('constants-browserify'),
-      crypto: require.resolve('crypto-browserify'),
-      domain: require.resolve('domain-browser'),
-      events: require.resolve('events'),
-      http: require.resolve('stream-http'),
-      https: require.resolve('https-browserify'),
-      os: require.resolve('os-browserify/browser'),
-      punycode: require.resolve('punycode'),
-      process: require.resolve('process/browser'),
-      querystring: require.resolve('querystring-es3'),
-      stream: require.resolve('stream-browserify'),
-      string_decoder: require.resolve('string_decoder'),
-      sys: require.resolve('util'),
-      timers: require.resolve('timers-browserify'),
-      tty: require.resolve('tty-browserify'),
-      url: require.resolve('url'),
-      util: require.resolve('util'),
-      vm: require.resolve('vm-browserify'),
-      zlib: require.resolve('browserify-zlib'),
-    },
     // yarn add -D stream-browserify path-browserify stream-browserify
     mainFiles: ["index", "mian"],
     extensions: ['.ts', '.tsx', '.scss', 'json', '.js'],
@@ -77,9 +52,6 @@ module.exports = {
       {
         test: /\.(png|jpe?g|svg|gif)$/,
         type: 'asset',
-        options: {
-          limit: 500
-        },
         parser: {
           dataUrlCondition: {
             maxSize: 4 * 1024 // 小于4kb转成base64
