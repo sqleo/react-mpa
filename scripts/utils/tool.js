@@ -15,6 +15,12 @@ const getEntryMeta = () => {
   return entryMeta
 }
 
+const getEntryName = () => {
+  const dirPackages = path.resolve(__dirname, "../../src/packages")
+  const entry = Object.create(null)
+  return fs.readdirSync(dirPackages).map(file => file)
+}
+
 const getEntryPath = () => {
   const dirPackages = path.resolve(__dirname, "../../src/packages")
   const entry = Object.create(null)
@@ -49,6 +55,7 @@ const getEntryTemplate = () => {
 }
 getEntryTemplate()
 module.exports = {
+  getEntryName,
   getEntryPath,
   getEntryTemplate
 }

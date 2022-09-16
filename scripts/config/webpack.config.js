@@ -2,20 +2,18 @@ const path = require('path');
 const ESLintWebpackPlugin = require("eslint-webpack-plugin");
 const NodePolyfillPlugin = require('node-polyfill-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const CompressionPlugin = require('compression-webpack-plugin')
-const { getEntryPath, getEntryTemplate } = require("./utils/tool")
+
+const { getEntryPath, getEntryTemplate } = require("../utils/tool")
 module.exports = {
   entry: getEntryPath(),
   resolve: {
     alias: {
-      "@src": path.resolve(__dirname, "../src"),
-      "@src/common": path.resolve(__dirname, "../src/common"),
-      "@src/containers": path.resolve(__dirname, "../src/containers"),
-      "@src/packages": path.resolve(__dirname, "../src/packages"),
-
+      "@src": path.resolve(__dirname, "../../src"),
+      "@src/common": path.resolve(__dirname, "../../src/common"),
+      "@src/containers": path.resolve(__dirname, "../../src/containers"),
+      "@src/packages": path.resolve(__dirname, "../../src/packages"),
     },
-    // yarn add -D stream-browserify path-browserify stream-browserify
     mainFiles: ["index", "mian"],
     extensions: ['.ts', '.tsx', '.scss', 'json', '.js'],
   },
@@ -79,7 +77,6 @@ module.exports = {
     ]
   },
   plugins: [
-    new CleanWebpackPlugin(),
     new NodePolyfillPlugin(),
     new ESLintWebpackPlugin({
       // 指定检查文件的根目录

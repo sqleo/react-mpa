@@ -1,13 +1,17 @@
 {
-  "name": "react-mpa",
-  "version": "1.0.0",
-  "description": "react-mpa 练习",
+  "name": "react-mpa-cli",
+  "version": "1.0.2",
+  "description": "react-mpa-cli 多页面cli",
   "main": "index.js",
+  "repository": "https://github.com/sqleo/react-mpa",
+  "author": {
+    "name": "sqliuen@gmail.com"
+  },
   "homepage": "./",
   "license": "MIT",
   "scripts": {
-    "dev": "webpack serve --config ./scripts/webpack.dev.js",
-    "build": "webpack --config ./scripts/webpack.config.js"
+    "dev": "webpack serve --config ./scripts/config/webpack.dev.js",
+    "build": "webpack --config ./scripts/config/webpack.pro.js"
   },
   "devDependencies": {
     "@babel/core": "^7.19.0",
@@ -27,9 +31,11 @@
     "cssnano": "^5.1.13",
     "eslint": "^8.23.0",
     "eslint-webpack-plugin": "^3.2.0",
-    "execa": "^6.1.0",
+    "execa": "^5.1.1",
+    "friendly-errors-webpack-plugin": "^1.7.0",
     "html-webpack-plugin": "^5.5.0",
     "image-webpack-loader": "^8.1.0",
+    "inquirer": "^8.2.3",
     "mini-css-extract-plugin": "^2.6.1",
     "node-polyfill-webpack-plugin": "^2.0.1",
     "portfinder": "^1.0.32",

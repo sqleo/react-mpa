@@ -1,8 +1,10 @@
 const { merge } = require("webpack-merge");
 const portfinder = require("portfinder")
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const FriendlyErrorsWebpackPlugin = require("friendly-errors-webpack-plugin")
 const configBase = require("./webpack.config");
 const path = require('path');
-const { BASE_PROT } = require("./utils/constant")
+const { BASE_PROT } = require("../utils/constant")
 
 portfinder.basePort = BASE_PROT;
 const devConfig = {
@@ -21,7 +23,16 @@ const devConfig = {
     hot: true,
     // 是否开启代码压缩
     port: BASE_PROT,
-  }
+  },
+  plugins:[
+    new CleanWebpackPlugin(),
+    new FriendlyErrorsWebpackPlugin({
+      compilationSuccessInfo: {
+        messages: ['You application is running here http://localhost:'+portfinder.basePort],
+        notes: ['Some additionnal notes to be displayed unpon successful compilation']
+      },
+    }),
+  ]
 }
 
 module.exports = async function () {
