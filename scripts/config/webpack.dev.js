@@ -19,16 +19,16 @@ const devConfig = {
       progress: false, // 在浏览器端打印编译速度
     },
     compress: true, // 开启gzip压缩
-    open: ['/home.html' ], // 是否自动打开浏览器
+    open: ['/home.html'], // 是否自动打开浏览器
     hot: true,
     // 是否开启代码压缩
     port: BASE_PROT,
   },
-  plugins:[
+  plugins: [
     new CleanWebpackPlugin(),
     new FriendlyErrorsWebpackPlugin({
       compilationSuccessInfo: {
-        messages: ['You application is running here http://localhost:'+portfinder.basePort],
+        messages: ['You application is running here http://localhost:' + portfinder.basePort],
         notes: ['Some additionnal notes to be displayed unpon successful compilation']
       },
     }),

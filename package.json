@@ -11,7 +11,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "webpack serve --config ./scripts/config/webpack.dev.js",
-    "build": "webpack --config ./scripts/config/webpack.pro.js"
+    "build": "node ./scripts/build.js"
   },
   "devDependencies": {
     "@babel/core": "^7.19.0",

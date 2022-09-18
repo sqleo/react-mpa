@@ -14,7 +14,7 @@ module.exports = {
       "@src/containers": path.resolve(__dirname, "../../src/containers"),
       "@src/packages": path.resolve(__dirname, "../../src/packages"),
     },
-    mainFiles: ["index", "mian"],
+    mainFiles: ["app", "mian", "index"],
     extensions: ['.ts', '.tsx', '.scss', 'json', '.js'],
   },
   module: {
@@ -30,7 +30,6 @@ module.exports = {
       {
         test: /\.s[ac]ss$/i,
         use: [
-          // Creates `style` nodes from JS strings
           {
             loader: MiniCssExtractPlugin.loader,
           },
@@ -56,7 +55,7 @@ module.exports = {
           }
         },
         generator: {
-          filename: 'static/asset/images/[fullhash][ext][query]'
+          filename: 'static/asset/images/[hash][ext][query]'
         },
         use: [
           {
@@ -80,14 +79,14 @@ module.exports = {
     new NodePolyfillPlugin(),
     new ESLintWebpackPlugin({
       // 指定检查文件的根目录
-      context: path.resolve(__dirname, "../src"),
+      context: path.resolve(__dirname, "../../src"),
       exclude: "node_modules", // 默认值
       cache: true, // 开启缓存
       // 缓存目录
       cacheLocation: path.resolve(
         __dirname,
-        "../node_modules/.cache/.eslintcache"
-      ),
+        "../../node_modules/.cache/.eslintcache"
+      )
     }),
     new MiniCssExtractPlugin({
       // Options similar to the same options in webpackOptions.output

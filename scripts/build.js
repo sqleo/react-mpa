@@ -2,7 +2,6 @@ const inquirer = require("inquirer");
 const execa = require("execa");
 const { getEntryName } = require("./utils/tool")
 
-
 inquirer
   .prompt([
     {
@@ -30,7 +29,6 @@ inquirer
     const message = `当前选中Package: ${answers.name.join(',')}`
     console.log(answers.name)
     runParallel(answers.name)
-    // Use user feedback for... whatever!!
   })
   .catch((error) => {
     if (error.isTtyError) {
@@ -51,7 +49,7 @@ async function runParallel(packages) {
 
 function build () {
   // const stringLists = buildLists.join(separator)
-  execa("webpack", ["--config", "./config/webpack.pro.js"], {
+  execa("webpack", ["--config", "./scripts/config/webpack.pro.js"], {
     stdio: 'inherit',
     extendEnv: false
   })
